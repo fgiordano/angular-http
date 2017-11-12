@@ -9,11 +9,10 @@ export class JokesService {
 
   constructor(private http: Http) { }
 
-  getRandom(): Observable<string> {
-    return this.http.get('http://api.icndb.com/jokes/random')
-      .map((res: Response) => res.json());
-      .map((res) => res.value.joke); 
-  }
-
+  getRandom(): Promise<string> {
+  return this.http.get('http://api.icndb.com/jokes/random')
+    .toPromise()
+    .then((res: Response) => res.json())
+    .then((res) => res.value.joke);
+	}
 }
-

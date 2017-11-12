@@ -12,7 +12,7 @@ import { JokesComponent } from './jokes/jokes/jokes.component';
     JokesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
     HttpModule
   ],
   providers: [],

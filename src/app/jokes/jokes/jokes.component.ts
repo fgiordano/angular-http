@@ -10,21 +10,18 @@ import 'rxjs/add/operator/throttleTime';
   selector: 'app-jokes',
   templateUrl: './jokes.component.html',
   styleUrls: ['./jokes.component.css'],
-  providers: [JokesService],
+  providers: [JokesService]
 })
+
 export class JokesComponent implements OnInit {
 
-  joke$: Observable<string>;
+  joke: Promise<string>;
+
   constructor(private jokes: JokesService) {}
 
   ngOnInit() {}
 
-  ngOnInit() {
-    this.joke$ = Observable
-      .fromEvent<MouseEvent>(document.getElementById('joke-btn'), 'click')
-      .throttleTime(1000)
-      .switchMap(
-        (e: MouseEvent) => this.jokes.getRandom()
-      );
+  getRandomJoke() {
+    this.joke = this.jokes.getRandom();
   }
 }
